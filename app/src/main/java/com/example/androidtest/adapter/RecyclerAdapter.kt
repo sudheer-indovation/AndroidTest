@@ -37,6 +37,16 @@ class RecyclerAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textTitle.text = list[position].title
         holder.textdate.text = list[position].created_at
+        holder.switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                // The switch is enabled/checked
+                holder.layItem.setBackgroundColor(Color.GRAY)
+            } else {
+                // The switch is disabled
+                holder.layItem.setBackgroundColor(Color.WHITE)
+            }
+            listner.onSelect(isChecked)
+        }
     }
 
 
@@ -46,17 +56,6 @@ class RecyclerAdapter(
         var textdate = itemView.txtDate
         var switch = itemView.selectionSwitch
 
-        init {
-            switch.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked) {
-                    // The switch is enabled/checked
-                    layItem.setBackgroundColor(Color.GRAY)
-                } else {
-                    // The switch is disabled
-                    layItem.setBackgroundColor(Color.WHITE)
-                }
-            }
-        }
 
     }
 
